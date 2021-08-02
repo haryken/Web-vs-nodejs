@@ -1,0 +1,102 @@
+<header>
+    <!-- TOP HEADER -->
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-left">
+                <!-- <li><a href=""><i class="fa fa-phone"></i> +039-42-73-773</a></li>
+                <li><a href=""><i class="fa fa-envelope-o"></i> hary.ken223@email.com</a></li>
+                <li><a href=""><i class="fa fa-map-marker"></i> 441/21 Le Van Luong Road</a></li> -->
+            </ul>
+            <ul class="header-links pull-right">
+                <% if (user) { %>
+                    <li><a href="#"><i class="fa fa-user-o"></i><%= user.displayName %></a></li>
+                <% } %>					
+            </ul>
+        </div>
+    </div>
+    <!-- /TOP HEADER -->
+
+    <!-- MAIN HEADER -->
+    <div id="header">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- LOGO -->
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <a href="#" class="logo">
+                        <h1 style="color: red">Notification</h1>
+                        </a>
+                    </div>
+                </div>
+                <!-- /LOGO -->
+
+                <!-- SEARCH BAR -->
+                
+                <!-- /SEARCH BAR -->
+
+                <!-- ACCOUNT -->
+                
+                <!-- /ACCOUNT -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER -->
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav">
+                <li><a href="/">Trang chủ</a></li>
+                <li class="nav-item dropdown">
+                    <a id="a" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span>Phân loại thông báo</span></a>
+                    <div  class="dropdown-menu">
+                        <a href="/alerts/sections"><span>Phòng ban</span></a><br>
+                        <!-- <a href="#"><span>Chủ đề</span></a><br> -->
+                        <a href="/alerts/render"><span>Tất cả thông báo</span></a>
+
+                    </div>
+                </li>
+                <% if (user && user.role === "ADMIN") { %> 
+                    <li class="nav-item dropdown">
+                        <a id="a" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span>Quản lý</span></a>
+                        <div  class="dropdown-menu">
+                            <a href="/users/create"><span>Tạo tài khoản</span></a></br>
+                            <a href="/users/assign"><span>Quản lý đăng bài</span></a>
+                        </div>
+                    </li>
+                <% } %>
+                <li class="nav-item dropdown">
+                    <a id="a" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span>Tài khoản</span></a>
+                    <div  class="dropdown-menu">
+
+                        <% if (user && user.role !== "DEPARTMENT") { %>
+                            <a href="/posts/users/<%= user._id %>"><span>Tường nhà</span></a><br>
+                        <% } %>
+                        
+                        <% if (user && user.role === "STUDENT") { %> 
+                            <a href="/users/update"><span>Thông tin tài khoản</span></a><br>
+                        <% } %>
+                        <% if (user && user.role === "DEPARTMENT") { %> 
+                            <a href="/users/update"><span>Đổi mật khẩu</span></a><br>
+                        <% } %>
+                        <a href="/logout"><span>Đăng xuất</span></a><br>
+                    </div>
+                </li>
+            </ul>
+            <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->

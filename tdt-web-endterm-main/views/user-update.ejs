@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Notification</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- nouislider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="/stylesheets/style.css"/>
+
+    <!-- jQuery Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <%- include("header"); -%>
+
+<div class="section">
+    <!-- container -->
+    
+    <div class="container">
+        <!-- row -->
+        <div class="section-title">
+            <% if (user && user.role === "DEPARTMENT") { %>
+                <h3 class="title">Đổi mật khẩu</h3>
+            <% } %>
+            <% if (user && user.role === "STUDENT") { %>
+                <h3 class="title">Cập nhật thông tin</h3>
+            <% } %>
+        </div>
+        <% if (user && user.role === "DEPARTMENT") { %>
+            <div class="row">
+                <form class="department-update-form" action="" method="post" enctype="multipart/form-data">
+                    <div class="col-md-6">
+                        <div class="billing-details">
+                            <label>Mật khẩu cũ</label>
+                            <div class="form-group">
+                                <input class="input department-update-form-old-password" 
+                                    type="password" name="oldPassword" placeholder="Mật khẩu cũ"  required>
+                            </div>
+                            <label>Mật khẩu mới</label>
+                            <div class="form-group">
+                                <input class="input department-update-form-new-password" 
+                                    type="password" name="newPassword" placeholder="Mật khẩu mới"  required>
+                            </div>
+                            <label>Nhập lại mật khẩu mới</label>
+                            <div class="form-group">
+                                <input class="input department-update-form-re-password"
+                                    type="password" name="rePassword" placeholder="Nhập lại mật khẩu mới"  required>
+                            </div>
+                            <div class="alert alert-danger department-update-form-error-message" 
+                                role="alert" hidden>
+                                
+                            </div>
+                            <div class="alert alert-success department-update-form-success-message" 
+                                role="alert" hidden>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" name="submit" value="save" class="primary-btn order-submit">Thay đổi</button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        <% } %>
+
+        <% if (user && user.role === "STUDENT") { %>
+            <div class="row">
+                <form class="student-update-form" action="" method="post" enctype="multipart/form-data">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Ảnh đại diện hiện tại</label>
+                            <br/>
+                            <img class="pl-4 student-update-form-picture" src="<%= user.image %>" alt="" />
+                        </div>
+                        <div class="billing-details">
+                            <label>Tên hiển thị</label>
+                            <div class="form-group">
+                                <input class="input student-update-form-display-name" 
+                                    type="text" name="displayName" placeholder="Tên hiển thị" 
+                                    value="<%= user.displayName %>"
+                                required>
+                            </div>
+                            <label>Lớp</label>
+                            <div class="form-group">
+                                <input class="input student-update-form-class-name" 
+                                    type="text" name="className" placeholder="Tên lớp" 
+                                    value="<%= user.className %>"
+                                required>
+                            </div>
+                            <label>Khoa</label>
+                            <div class="form-group">
+                                <input class="input student-update-form-department-name" 
+                                    type="text" name="departmentName" placeholder="Tên khoa"  
+                                    value="<%= user.departmentName %>"
+                                required>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-update-form-profile">Profile Picture</label>
+                                <input type="file" class="form-control-file student-update-form-profile" 
+                                    id="student-update-form-profile">
+                            </div>
+                            <div class="alert alert-danger student-update-form-error-message" 
+                                role="alert" hidden>
+                                
+                            </div>
+                            <div class="alert alert-success student-update-form-success-message" 
+                                role="alert" hidden>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" name="submit" value="save" class="primary-btn order-submit">Thay đổi</button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        <% } %>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+    <br><a href="?controller=giangvien&action=cauhoi"><?= getMessage(); ?></a>
+</div>
+<!-- Delete Confirm Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="mdheader" class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color: red;"  >Bạn có muốn xóa...này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                <form action="?controller=admin&action=delete" method="post" style="display: inline;">
+                    <input id="delete-id" type="hidden" name="id" value="??">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- /Modal content-->
+    </div>
+</div>
+<!-- /Delete Confirm Modal -->
+
+</body>
+
+
+
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">About Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fa fa-map-marker"></i>441/21 Le Van Luong Road</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>+039-42-73-773</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>hary.ken223@email.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+								<span class="copyright">
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/hary.ken.1555/" target="_blank">DuyLinh</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+<script src="/javascripts/main.js"></script>
+</body>
+</html>

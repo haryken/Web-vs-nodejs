@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Class Room</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- nouislider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="/stylesheets/style.css"/>
+
+    <!-- jQuery Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<%- include("header"); -%>
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Post bài-->
+            <div class="col-md-12">
+                <!-- Post-->
+                <form class="student-post-create" hidden></form>
+                <!-- /Post-->
+            </div>
+            <!-- /Post bài-->
+        
+            <!-- Post tab -->
+            <div class="col-md-8 col-xs-12 student-posts">
+            <% if (userDetail) { %>
+                <img src="<%= userDetail.image %>" alt="">
+                <h1><%= userDetail.displayName %></h1>
+                <% if (userDetail.className) { %>
+                    <h4>Lớp: <%= userDetail.className %></h4>
+                <% } %>
+                <% if (userDetail.departmentName) { %>
+                    <h4>Khoa: <%= userDetail.departmentName %></h4>
+                <% } %>
+            <% } %>
+                <!-- eachpost -->
+                <% for ( let post of posts ) { %>
+                <div class="col-md-12 col-xs-8" data-post="<%= post._id %>">
+                    <div class="product">
+                         <!-- Thông tin bài đăng -->	
+                        <p class="product-price">
+                            <%= post.user.displayName %>
+                            - 
+                            <%= new Date(post.createdAt).toDateString() %>
+                        </p>
+                        <textarea class="input" readonly>
+                            <%= post.content %>
+                        </textarea>
+                        <div class="student-post-youtube-container">
+                            <% if (post.youtubeUrl) { %>
+                                <iframe class="embed-responsive-item" src="<%= post.youtubeUrl %>"
+                                    width="500" height="300"
+                                    ></iframe>
+                            <% } %>
+                            </div>
+                        <div class="product-img">
+                            <img src="<%= post.imageUrl %>" width="300px" alt="">
+                        </div>
+                        <div class="product-body" style="">
+                        </div>
+                        <!-- /Thông tin bài đăng -->
+						<!-- Edit post -->
+						<div class="product-body">
+                            <% if (String(post.user._id) == String(user._id) || user.role === "ADMIN") { %>
+							<div class="product-btns">
+								<button data-idpost="<%= post._id %>" 
+                                    data-content="Nộ đung ở đây" data-name="Xóa bài viết này" 
+                                    data-toggle="modal" data-target="#myModal1"
+                                    class="deletepost order-submit" type="button">
+                                    <i class="fa fa-close">
+                                    </i><span class="tooltipp">Xóa</span>
+
+                                </button>
+								<button class="editpost add-to-compare" 
+                                    data-idpost="<%= post._id %>" data-content="Nộ đung ở đây" 
+                                    data-toggle="modal" data-target="#editmodel"
+                                    data-name="Xóa bài viết này" name="submit" value="custom">
+                                    <i class="fa fa-cog">
+                                    </i><span class="tooltipp">Chỉnh sửa</span>
+                                </button>
+							</div>
+                            <% } %>
+						</div>
+						<!-- /Edit post -->
+                        <!-- Comment -->
+                        <div class="shiping-details">
+                            <% if (post.comments) { %>
+                            <div class="caption" id='p1'>
+                                <div class="col-md-12">
+                                    <div id="reviews">
+                                        <ul class="reviews">
+                                            <!-- each cmt -->
+                                            <% for ( let comment of post.comments) { %>
+                                                <li data-comment="<%= comment._id %>">
+                                                    <div class="review-heading">
+                                                        <div class="product-widget">
+                                                            <% if (String(comment.user._id) == String(user._id)) { %>
+
+                                                                <button data-id="<%= comment._id %>" data-name="Xóa cmt này"
+                                                                data-postid="<%= post._id %>"
+                                                                class="delete primary-btn btn-warning order-submit" 
+                                                                data-toggle="modal" data-target="#myModal"
+                                                                type="button"><i class="fa fa-close"></i></button>
+                                                            <% } %>
+                                                        </div>
+                                                        <h5 class="name"><%= comment.user.displayName %></h5>
+                                                        <p class="date"><%= new Date(comment.createdAt).toDateString() %></p>
+                                                    </div>
+                                                    <div class="review-body">
+                                                        <p><%= comment.content %></p>
+                                                        
+                                                    </div>
+                                                </li>
+                                            <% } %>
+                                            <!-- /each cmt -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                            <!-- post cmt -->
+                                <!-- row -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="newsletter">
+                                        <form method="post" action="?controller=lophoc&action=postcmt"
+                                            class="student-post-comment-form"
+                                        >
+                                            <input class="input student-post-comment-content" name="content" type="text" 
+                                            placeholder="Viết bình luận..." required>
+                                            <button class="newsletter-btn" data-id="<%= post._id %>">
+                                                <i class="fa fa-telegram"></i> Post</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            <!-- /row -->
+                            </div>
+                            <!-- /post cmt -->
+                            <!-- ẩn hiện cmt -->
+                            <!-- <input type="checkbox" id="cb1" onclick ="hidecmt('p1','cb1')" >
+                            <label for="cb1">
+                                Ẩn(hiện) bình luận
+                            </label> -->
+                            <!-- ẩn hiện cmt -->
+                            <!--Tab cmt -->
+                            
+                            <!--/Tab cmt -->
+                        </div>
+                        <!-- Comment -->
+                    </div>
+                </div> 
+                <% } %>
+                <!-- /eachpost -->
+            </div> 
+            <!-- /Post tab -->
+            <!-- Thông báo mới -->
+            </div>
+            <!-- /  Thông báo mới -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- Delete comment Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="mdheader" class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color: red;"  >Bạn có muốn xóa bình luận này không?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                <form action="" method="post" style="display: inline;" class="student-post-delete-comment-form">
+                    <input id="deletepost-id" type="hidden" name="id" value="??">
+                    <button type="submit" class="btn btn-danger student-post-delete-comment-button">Xóa</button>
+                </form>
+            </div>
+
+        </div>
+        <!-- /Modal content-->
+    </div>
+</div>
+<!-- /Delete comment Modal -->
+<!-- Delete post Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="mdheader" class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color: red;"  >Bạn có muốn xóa bài đăng này không?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-success delete-post-modal-success" role="alert" hidden>
+                    This is a success alert—check it out!
+                </div>
+                <div class="alert alert-danger delete-post-modal-error" role="alert" hidden>
+                    This is a danger alert—check it out!
+                </div>
+                <!-- <form action="ken.com" method="get" value="?" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+                <input id="delete-id" type="hidden" name="id" value="??"> -->
+                <button type="submit" class="btn btn-danger delete-post-modal-button">Xóa</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+            </div>
+
+        </div>
+        <!-- /Modal content-->
+    </div>
+</div>
+<!-- /Delete post Modal -->
+<!-- Edit model -->
+  <div class="modal fade" id="editmodel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Chỉnh sửa bài đăng</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+		<form class="edit-post-modal-form">
+			<div class="modal-body">  
+				<input id="post-id" type="hidden" name="id" value="??">
+				<label for="content-id">Nội dung bài đăng</label>
+				<input id="content" class="input edit-post-modal-form-content" 
+                    type="text" placeholder="Nội dung bài đăng" name="content">
+                <label for="edit-post-modal-youtube">Đường dẫn Youtube</label>
+                <input id="edit-post-modal-youtube" class="input edit-post-modal-form-youtube" 
+                    type="text" placeholder="Đường dẫn Youtube">
+				<label for="fileToUpload">Thay đổi ảnh</label>
+				<input type="file" class="input edit-post-modal-form-picture" 
+                    name="fileToUpload" id="fileToUpload" placeholder="up file ảnh">
+			</div>
+			<!-- Modal footer -->
+			<div class="modal-footer">
+                <div class="alert alert-success edit-post-modal-success" role="alert" hidden>
+                    This is a success alert—check it out!
+                </div>
+                <div class="alert alert-danger edit-post-modal-error" role="alert" hidden>
+                    This is a danger alert—check it out!
+                </div>
+				<button type="submit" class="btn btn-danger edit-post-modal-form-save">Lưu</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</form>
+      </div>
+    </div>
+</div>
+ <!-- Edit model -->
+</body>
+
+
+
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">About Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fa fa-map-marker"></i>441/21 Le Van Luong Road</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>+039-42-73-773</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>hary.ken223@email.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+								<span class="copyright">
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/hary.ken.1555/" target="_blank">DuyLinh</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+<script src="/javascripts/main.js"></script>
+</body>
+</html>

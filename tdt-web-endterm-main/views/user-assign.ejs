@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Notification</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- nouislider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="/stylesheets/style.css"/>
+
+    <!-- jQuery Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <%- include("header"); -%>
+
+<div class="section">
+    <!-- container -->
+    
+    <div class="container">
+        <!-- row -->
+        <div class="section-title">
+            <h3 class="title">Quản lý phòng/khoa</h3>
+        </div>
+        <div class="row">
+            <div class="row--grid">
+                <% if (users && users.length > 0) { %>
+                    <% for (let user of users) { %>
+                        <div class="card">
+                            <div class="card-body card-body--flex">
+                                <div class="card-header--mine">
+                                    <h5 class="card-title"><%= user.displayName %></h5>
+                                    <h4 class="card-title--mine"><%= user.username %></h4>
+                                </div>
+                                <button class="btn btn-primary user-assign-button"
+                                    data-toggle="modal" data-target=".user-assign-modal"
+                                    data-id="<%= user._id %>"
+                                >Assign</button>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+                
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+    <br><a href="?controller=giangvien&action=cauhoi"><?= getMessage(); ?></a>
+</div>
+<div class="modal fade user-assign-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Assign sections</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form class="user-assign-form">
+                    <% if (sections) { %>
+                        <% for (let section of sections) { %>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="<%= section._id %>"
+                                    id="<%= section._id %>">
+                                <label class="form-check-label" for="<%= section._id %>">
+                                    <%= section.name %>
+                                </label>
+                            </div>
+                        <% } %>
+                    <% } %>
+                </form>
+                <div class="alert alert-success user-assign-form-success" role="alert" hidden>
+                    
+                </div>
+                <div class="alert alert-danger user-assign-form-error" role="alert" hidden>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary user-assign-form-submit">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="mdheader" class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color: red;"  >Bạn có muốn xóa...này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                <form action="?controller=admin&action=delete" method="post" style="display: inline;">
+                    <input id="delete-id" type="hidden" name="id" value="??">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- /Modal content-->
+    </div>
+</div>
+<!-- /Delete Confirm Modal -->
+
+</body>
+
+
+
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">About Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fa fa-map-marker"></i>441/21 Le Van Luong Road</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>+039-42-73-773</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>hary.ken223@email.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+								<span class="copyright">
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/hary.ken.1555/" target="_blank">DuyLinh</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+<script src="/javascripts/main.js"></script>
+</body>
+</html>

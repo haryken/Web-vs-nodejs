@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Class Room</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- nouislider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="/stylesheets/style.css"/>
+
+    <!-- jQuery Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+	<!-- TOP HEADER -->
+	<!-- /TOP HEADER -->
+	<body>
+	<%- include("header"); -%>
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+    <div class="rows">
+            <!-- <form class="" action="?controller=lophoc&action=listgv" method="post">
+				<div class="col-md-4 col-xs-6">
+						<input class="input" type="text" name="find" placeholder="Tìm kiếm" required>
+				</div>
+				<div class="col-md-4 col-xs-6">
+						<button type="submit" name="submit" value="find" class="primary-btn order-submit">Search</button>
+				</div>
+			</form> -->
+		</div>
+        <!-- row -->
+        <div class="row">
+            <!-- Thông báo mới -->
+            
+            <div class="col-md-12 col-xs-12 alerts-container">
+                    <!-- Mỗi tb -->
+                <% if (alerts.length > 0) { %>
+					<% for ( let alert of alerts ) { %>
+                    <div class="col-md-12 col-xs-12">
+                        <div class="product">
+                            <div class="product-body">
+                                <p><%= alert.section.name %> - <%= new Date(alert.createdAt).toLocaleDateString() %> </p>
+                                    <h3 class="product-name"><a href="/alerts/render/<%= alert._id %>">
+                                        <%= alert.content %>
+                                    </a></h3>
+                            </div>
+                        </div>
+                    </div>
+					<% } %>
+                    <!-- /Mỗi tb -->
+                    <!-- Mỗi tb -->
+                <% } else { %>
+                    <h3>Không có thông báo nào</h3>
+                <% } %>
+            </div>
+            <!-- /  Thông báo mới -->
+            <!-- store bottom filter -->
+            <!-- <div class="store-filter clearfix">
+                <ul class="store-pagination">
+                    <li class="alerts-container-previous">
+						<i class="fa fa-angle-left"></i>
+					</li>
+                    <li class="active alerts-container-page-number">1</li>
+                    <li class="alerts-container-next">
+						<i class="fa fa-angle-right"></i>
+					</li>
+                </ul>
+            </div> -->
+            <!-- /store bottom filter -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+</body>
+</body>
+
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">About Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fa fa-map-marker"></i>441/21 Le Van Luong Road</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>+039-42-73-773</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>hary.ken223@email.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+								<span class="copyright">
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/hary.ken.1555/" target="_blank">DuyLinh</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+<script src="/javascripts/main.js"></script>
+</body>
+</html>

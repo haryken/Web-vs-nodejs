@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Class Room</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- nouislider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="./file/css/style.css"/>
+
+    <!-- jQuery Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-left">
+						<li><a href=""><i class="fa fa-phone"></i> +039-42-73-773</a></li>
+						<li><a href=""><i class="fa fa-envelope-o"></i> hary.ken223@email.com</a></li>
+						<li><a href=""><i class="fa fa-map-marker"></i> 441/21 Le Van Luong Road</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-user-o"></i>Võ Duy Linh</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /TOP HEADER -->
+
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+								<h1 style="color: red">Notification</h1>
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
+							<div class="header-search">
+								<form method="POST" action="?controller=home&action=sanpham">
+									<select class="input-select" name="type">
+										<option value="1">Tên sinh viên</option>
+										<option value="1">Mã sinh viên</option>
+									</select>
+									<input class="input" placeholder="Tìm kiếm..." name="val" style="width: 200px" required>
+									<button class="search-btn" type="submit" name="submit" value="searchbar">Tìm</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<!-- Cart -->
+								<div class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-bell"></i>
+										<span>Thông báo</span>
+										<div class="qty">3</div>
+									</a>
+									<div class="cart-dropdown">
+										<div class="cart-list">
+											<div class="product-widget">
+												<div class="product-body">
+													<h3 class="product-name">[Phòng tài chính] 11/5/2021</h3>
+													<p><a href="#">Thông báo đòi nợ</a></p>
+												</div>
+											</div>
+											<hr>
+											<div class="product-widget">
+												<div class="product-body">
+													<h3 class="product-name">[Phòng tài chính] 11/5/2021</h3>
+													<p><a href="#">Thông báo đòi nợ</a></p>
+												</div>
+											</div>
+											<hr>
+											<div class="product-widget">
+												<div class="product-body">
+													<h3 class="product-name">[Phòng tài chính] 11/5/2021</h3>
+													<p><a href="#">Thông báo đòi nợ</a></p>
+												</div>
+											</div>
+											<hr>
+											<div class="product-widget">
+												<div class="product-body">
+													<h3 class="product-name">[Phòng tài chính] 11/5/2021</h3>
+													<p><a href="#">Thông báo đòi nợ</a></p>
+												</div>
+											</div>
+											<hr>
+										</div>
+										
+									</div>
+								</div>
+								<!-- /Cart -->
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li><a href="?controller=home&action=index">Trang chủ</a></li>
+						<li class="nav-item dropdown">
+							<a id="a" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span>Phân loại thông báo</span></a>
+							<div  class="dropdown-menu">
+								<a href="#"><span>Phòng ban</span></a><br>
+								<a href="#"><span>Chủ đề</span></a>
+								<a href="#"><span>Tất cả thông báo</span></a>
+
+							</div>
+                		</li>
+						<li class="nav-item dropdown">
+							<a id="a" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span>Tài khoản</span></a>
+							<div  class="dropdown-menu">
+								<a href="#"><span>Đăng xuất</span></a><br>
+								<a href="#"><span>Thông tin tài khoản</span></a>
+							</div>
+                		</li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
+<body>
+<div class="section">
+    <!-- container -->
+    
+    <div class="container">
+        <!-- row -->
+        <div class="section-title">
+            <h3 class="title">Form nhập</h3>
+        </div>
+        <div class="row">
+            <form class="" action="#" method="post" enctype="multipart/form-data">
+                <div class="col-md-6">
+                    <div class="billing-details">
+                        <label>Nội dung</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="noidung" placeholder="Nội dung câu hỏi"  required>
+                        </div>
+                        <label>Đáp án A</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="a" placeholder="Đáp án cho câu A"  required>
+                        </div>
+                        <label>Đáp án B</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="b" placeholder="Đáp án cho câu B"  required>
+                        </div>
+                        <label>Đáp án C</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="c" placeholder="Đáp án cho câu C"  required>
+                        </div>
+                        <label>Đáp án D</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="d" placeholder="Đáp án cho câu D"  required>
+                        </div>
+                        <label>Đáp án cho câu hỏi</label>
+                        <div class="form-group">
+                            <select  class="input" name="dapan" required>
+                                <option value="">Chọn đáp án đúng cho câu hỏi</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                        <label>Trình độ câu hỏi</label>
+                        <div class="form-group">
+                            <select  class="input" name="trinhdo" required>
+                                <option value="">Chọn trình độ câu hỏi</option>
+                                <option value="A">Đại học chuyên ngành</option>
+                                <option value="B">Đại học không chuyên ngành</option>
+                                <option value="C">Cao đẳng</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="billing-details">
+                        <label>Nội dung</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="noidung" placeholder="Nội dung câu hỏi"  required>
+                        </div>
+                        <label>Đáp án A</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="a" placeholder="Đáp án cho câu A"  required>
+                        </div>
+                        <label>Đáp án B</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="b" placeholder="Đáp án cho câu B"  required>
+                        </div>
+                        <label>Đáp án C</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="c" placeholder="Đáp án cho câu C"  required>
+                        </div>
+                        <label>Đáp án D</label>
+                        <div class="form-group">
+                            <input class="input" type="text" name="d" placeholder="Đáp án cho câu D"  required>
+                        </div>
+                        <label>Đáp án cho câu hỏi</label>
+                        <div class="form-group">
+                            <select  class="input" name="dapan" required>
+                                <option value="">Chọn đáp án đúng cho câu hỏi</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" name="submit" value="save" class="primary-btn order-submit">Thêm</button>
+                        <button data-id="id ở đây" data-name="Tên của header" class="delete primary-btn btn-warning order-submit" type="button">Xóa</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+    <br><a href="?controller=giangvien&action=cauhoi"><?= getMessage(); ?></a>
+</div>
+<!-- Delete Confirm Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="mdheader" class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color: red;"  >Bạn có muốn xóa...này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                <form action="?controller=admin&action=delete" method="post" style="display: inline;">
+                    <input id="delete-id" type="hidden" name="id" value="??">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- /Modal content-->
+    </div>
+</div>
+<!-- /Delete Confirm Modal -->
+
+</body>
+
+
+
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">About Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fa fa-map-marker"></i>441/21 Le Van Luong Road</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>+039-42-73-773</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>hary.ken223@email.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+								<span class="copyright">
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/hary.ken.1555/" target="_blank">DuyLinh</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+<script src="./file/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Class Room</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- nouislider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="../stylesheets/style.css"/>
+
+    <!-- jQuery Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-left">
+						
+					</ul>
+					<ul class="header-links pull-right">
+                        <% if (user) { %>
+                            <li><a href="#"><i class="fa fa-user-o"></i><%= user.displayName %></a></li>
+                        <% } %>
+				</ul>
+				</div>
+			</div>
+			<!-- /TOP HEADER -->
+
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+								<h1 style="color: red">Notification</h1>
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<!-- <div class="col-md-6">
+							<div class="header-search">
+								<form method="POST" action="?controller=home&action=sanpham">
+									<select class="input-select" name="type">
+										<option value="1">Tên sinh viên</option>
+										<option value="1">Mã sinh viên</option>
+									</select>
+									<input class="input" placeholder="Tìm kiếm..." name="val" style="width: 200px" required>
+									<button class="search-btn" type="submit" name="submit" value="searchbar">Tìm</button>
+								</form>
+							</div>
+						</div> -->
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<!-- Cart -->
+								<!-- <div class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-bell"></i>
+										<span>Thông báo</span>
+										<div class="qty">3</div>
+									</a>
+									<div class="cart-dropdown">
+										<div class="cart-list">
+											<div class="product-widget">
+												<div class="product-body">
+													<h3 class="product-name">[Phòng tài chính] 11/5/2021</h3>
+													<p><a href="#">Thông báo đòi nợ</a></p>
+												</div>
+											</div>
+											<hr>
+											<div class="product-widget">
+												<div class="product-body">
+													<h3 class="product-name">[Phòng tài chính] 11/5/2021</h3>
+													<p><a href="#">Thông báo đòi nợ</a></p>
+												</div>
+											</div>
+											<hr>
+											<div class="product-widget">
+												<div class="product-body">
+													<h3 class="product-name">[Phòng tài chính] 11/5/2021</h3>
+													<p><a href="#">Thông báo đòi nợ</a></p>
+												</div>
+											</div>
+											<hr>
+											<div class="product-widget">
+												<div class="product-body">
+													<h3 class="product-name">[Phòng tài chính] 11/5/2021</h3>
+													<p><a href="#">Thông báo đòi nợ</a></p>
+												</div>
+											</div>
+											<hr>
+										</div>
+										
+									</div>
+								</div> -->
+								<!-- /Cart -->
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li><a href="?controller=home&action=index">Trang chủ</a></li>
+						<li class="nav-item dropdown">
+							<a id="a" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span>Phân loại thông báo</span></a>
+							<div  class="dropdown-menu">
+								<a href="#"><span>Phòng ban</span></a><br>
+								<a href="#"><span>Chủ đề</span></a>
+								<a href="#"><span>Tất cả thông báo</span></a>
+
+							</div>
+                		</li>
+						<li class="nav-item dropdown">
+							<a id="a" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span>Tài khoản</span></a>
+							<div  class="dropdown-menu">
+								<a href="logout"><span>Đăng xuất</span></a><br>
+								<a href="#"><span>Thông tin tài khoản</span></a>
+							</div>
+                		</li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
+<body>
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Post bài-->
+            <div class="col-md-12">
+                <!-- Post-->
+                <div class="shiping-details">
+                    <div class="section-title"><h3 class="title">Đăng bài</h3></div>
+                    <div class="input-checkbox">
+                        <input type="checkbox" id="shiping-address">
+                        <label for="shiping-address">
+                            Đăng bài mới...
+                        </label>
+                        <!--input -->
+                        <div class="caption">
+                            <div class="col-md-12">
+                                <form action="?controller=lophoc&action=demo" method="post" enctype="multipart/form-data">
+                                    <textarea name="content" class="custom-file-input input" required placeholder="nội dung bài đăng"></textarea>
+                                    <input type="file" class="input" name="fileToUpload" id="fileToUpload" placeholder="up file ảnh">
+                                    <div class="product-details">
+                                        <div class="add-to-cart">
+                                            <button class="add-to-cart-btn" name="submit" value="addpost"><i class="fa fa-telegram"></i>Đăng bài</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--input -->
+                    </div>
+                </div>
+                <!-- /Post-->
+            </div>
+            <!-- /Post bài-->
+        
+            <!-- Post tab -->
+            <div class="col-md-8 col-xs-12">
+            <h1>BÀI ĐĂNG</h1>
+                <!-- eachpost -->
+                <div class="col-md-12 col-xs-8">
+                    <div class="product">
+                         <!-- Thông tin bài đăng -->	
+                        <p class="product-price">Tên người đăng</p>
+                        <div class="product-img">
+                            <img src="file/img/img_reachout.jpg" width="50px" height="100px" alt="">
+                        </div>
+                        <textarea class="input" readonly>Nội dung</textarea>
+                        <div class="product-body">
+                        </div>
+                        <!-- /Thông tin bài đăng -->
+						<!-- Edit post -->
+						<div class="product-body">
+							<div class="product-btns">
+								<button data-idpost="1" data-content="Nộ đung ở đây" data-name="Xóa bài viết này" class="deletepost order-submit" type="button"><i class="fa fa-close"></i><span class="tooltipp">Xóa</span></button>
+								<button class="editpost add-to-compare" data-idpost="1" data-content="Nộ đung ở đây" data-name="Xóa bài viết này" name="submit" value="custom"><i class="fa fa-cog"></i><span class="tooltipp">Chỉnh sửa</span></button>
+							</div>
+						</div>
+						<!-- /Edit post -->
+                        <!-- Comment -->
+                        <div class="shiping-details">
+                            <!-- post cmt -->
+                                <!-- row -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="newsletter">
+                                            <form method="post" action="?controller=lophoc&action=postcmt">
+                                                <input class="input" name="content" type="text" placeholder="Viết bình luận..." required>
+                                                <button class="newsletter-btn"><i class="fa fa-telegram"></i> Post</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                <!-- /row -->
+                            </div>
+                            <!-- /post cmt -->
+                            <!-- ẩn hiện cmt -->
+                            <input type="checkbox" id="cb1" onclick ="hidecmt('p1','cb1')" >
+                            <label for="cb1">
+                                Ẩn(hiện) bình luận
+                            </label>
+                            <!-- ẩn hiện cmt -->
+                            <!--Tab cmt -->
+                            <div class="caption" id='p1' style="display: none;">
+                                <div class="col-md-12">
+                                    <div id="reviews">
+                                        <ul class="reviews">
+                                            <!-- each cmt -->
+                                            <li>
+                                                <div class="review-heading">
+                                                    <div class="product-widget">
+                                                        <button data-id="id của cmt" data-name="Xóa cmt này" class="delete primary-btn btn-warning order-submit" type="button"><i class="fa fa-close"></i></button>
+                                                    </div>
+                                                    <h5 class="name">O Võ Duy Linh</h5>
+                                                    <p class="date">11/5/2020</p>
+                                                </div>
+                                                <div class="review-body">
+                                                    <p>Xin chào các bạn</p>
+                                                </div>
+                                            </li>
+                                            <!-- /each cmt -->
+                                            <!-- each cmt -->
+                                            <li>
+                                                <div class="review-heading">
+                                                    <div class="product-widget">
+                                                        <button data-id="id của cmt" data-name="Xóa cmt này" class="delete primary-btn btn-warning order-submit" type="button"><i class="fa fa-close"></i></button>
+                                                    </div>
+                                                    <h5 class="name">O Võ Duy Linh</h5>
+                                                    <p class="date">11/5/2020</p>
+                                                </div>
+                                                <div class="review-body">
+                                                    <p>Xin chào các bạn</p>
+                                                </div>
+                                            </li>
+                                            <!-- /each cmt -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Tab cmt -->
+                        </div>
+                        <!-- Comment -->
+                    </div>
+                </div> 
+                <!-- /eachpost -->
+				<!-- eachpost -->
+                <div class="col-md-12 col-xs-8">
+                    <div class="product">
+                         <!-- Thông tin bài đăng -->	
+                        <p class="product-price">Tên người đăng</p>
+                        <div class="product-img">
+                            <img src="file/img/img_reachout.jpg" width="50px" height="100px" alt="">
+                        </div>
+                        <textarea class="input" readonly>Nội dung</textarea>
+                        <div class="product-body">
+                        </div>
+                        <!-- /Thông tin bài đăng -->
+						<!-- Edit post -->
+						<div class="product-body">
+							<div class="product-btns">
+								<button data-idpost="1" data-content="Nộ đung ở đây" data-name="Xóa bài viết này" class="deletepost order-submit" type="button"><i class="fa fa-close"></i><span class="tooltipp">Xóa</span></button>
+								<button class="editpost add-to-compare" data-idpost="1" data-content="Nộ đung ở đây" data-name="Xóa bài viết này" name="submit" value="custom"><i class="fa fa-cog"></i><span class="tooltipp">Chỉnh sửa</span></button>
+							</div>
+						</div>
+						<!-- /Edit post -->
+                        <!-- Comment -->
+                        <div class="shiping-details">
+                            <!-- post cmt -->
+                                <!-- row -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="newsletter">
+                                            <form method="post" action="?controller=lophoc&action=postcmt">
+                                                <input class="input" name="content" type="text" placeholder="Viết bình luận..." required>
+                                                <button class="newsletter-btn"><i class="fa fa-telegram"></i> Post</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                <!-- /row -->
+                            </div>
+                            <!-- /post cmt -->
+                            <!-- ẩn hiện cmt -->
+                            <input type="checkbox" id="cb" onclick = "hidecmt('p','cb')" >
+                            <label for="cb">
+                                Ẩn(hiện) bình luận
+                            </label>
+                            <!-- ẩn hiện cmt -->
+                            <!--Tab cmt -->
+                            <div class="caption" id='p' style="display: none;">
+                                <div class="col-md-12">
+                                    <div id="reviews">
+                                        <ul class="reviews">
+                                            <!-- each cmt -->
+                                            <li>
+                                                <div class="review-heading">
+                                                    <div class="product-widget">
+                                                        <button data-id="id của cmt" data-name="Xóa cmt này" class="delete primary-btn btn-warning order-submit" type="button"><i class="fa fa-close"></i></button>
+                                                    </div>
+                                                    <h5 class="name">O Võ Duy Linh</h5>
+                                                    <p class="date">11/5/2020</p>
+                                                </div>
+                                                <div class="review-body">
+                                                    <p>Xin chào các bạn</p>
+                                                </div>
+                                            </li>
+                                            <!-- /each cmt -->
+                                            <!-- each cmt -->
+                                            <li>
+                                                <div class="review-heading">
+                                                    <div class="product-widget">
+                                                        <button data-id="id của cmt" data-name="Xóa cmt này" class="delete primary-btn btn-warning order-submit" type="button"><i class="fa fa-close"></i></button>
+                                                    </div>
+                                                    <h5 class="name">O Võ Duy Linh</h5>
+                                                    <p class="date">11/5/2020</p>
+                                                </div>
+                                                <div class="review-body">
+                                                    <p>Xin chào các bạn</p>
+                                                </div>
+                                            </li>
+                                            <!-- /each cmt -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Tab cmt -->
+                        </div>
+                        <!-- Comment -->
+                    </div>
+                </div> 
+                <!-- /eachpost -->
+            </div> 
+            <!-- /Post tab -->
+            <!-- Thông báo mới -->
+            <div class="col-md-4 col-xs-12">
+                <h1>Thông báo mới</h1>
+                <a href="">Xem tất cả thông báo.....</a>
+                    <!-- Mỗi tb -->
+                    <div class="col-md-12 col-xs-12">
+                        <div class="product">
+                            <div class="product-body">
+                                <p>[Phòng tài chính hk1 2020-2021] 11/5/2020</p>
+                                <h3 class="product-name"><a href="link/id của tb">Thông báo đòi nợ</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Mỗi tb -->
+                    <!-- Mỗi tb -->
+                    <div class="col-md-12 col-xs-12">
+                        <div class="product">
+                            <div class="product-body">
+                                <p>[Phòng tài chính hk1 2020-2021] 11/5/2020</p>
+                                <h3 class="product-name"><a href="link/id của tb">Thông báo đòi nợ</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Mỗi tb -->
+                    <!-- Mỗi tb -->
+                    <div class="col-md-12 col-xs-12">
+                        <div class="product">
+                            <div class="product-body">
+                                <p>[Phòng tài chính hk1 2020-2021] 11/5/2020</p>
+                                <h3 class="product-name"><a href="link/id của tb">Thông báo đòi nợ</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Mỗi tb -->
+            </div>
+            <!-- /  Thông báo mới -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- Delete comment Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="mdheader" class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color: red;"  >Bạn có muốn xóa bình luận này không?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                <form action="#" method="post" value="?" style="display: inline;">
+                    <input id="deletepost-id" type="hidden" name="id" value="??">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+            </div>
+
+        </div>
+        <!-- /Modal content-->
+    </div>
+</div>
+<!-- /Delete comment Modal -->
+<!-- Delete post Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="mdheader" class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color: red;"  >Bạn có muốn bài đăng này không?</p>
+            </div>
+            <div class="modal-footer">
+                
+                <form action="ken.com" method="get" value="?" style="display: inline;">
+                    <input id="delete-id" type="hidden" name="id" value="??">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+            </div>
+
+        </div>
+        <!-- /Modal content-->
+    </div>
+</div>
+<!-- /Delete post Modal -->
+<!-- Edit model -->
+  <div class="modal fade" id="editmodel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Chỉnh sửa bài đăng</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+		<form>
+			<div class="modal-body">  
+				<input id="post-id" type="hidden" name="id" value="??">
+				<label for="content-id">Nội dung bài đăng</label>
+				<input id="content" class="input" type="text" placeholder="Nội dung bài đăng" name="content" value="??">
+				<label for="fileToUpload">Nội dung bài đăng</label>
+				<input type="file" class="input" name="fileToUpload" id="fileToUpload" placeholder="up file ảnh">
+			</div>
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-danger">Lưu</button>
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</form>
+      </div>
+    </div>
+</div>
+ <!-- Edit model -->
+</body>
+
+
+
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">About Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fa fa-map-marker"></i>441/21 Le Van Luong Road</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>+039-42-73-773</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>hary.ken223@email.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+								<span class="copyright">
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/hary.ken.1555/" target="_blank">DuyLinh</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+<script src="../javascripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- //Meta-Tags -->
+    <!-- <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" /> -->
+    <!-- Style -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <!-- //Fonts -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Login</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="/stylesheets/style.css"/>
+
+    <!-- jQuery Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<!-- Body -->
+<body id="login" background="../img/b3.jpg">
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="loginh1" style="color: black"><b>Hệ thống thông tin sinh viên</b></h1>
+                <div class="">
+                </div>
+                <div class="col-md-4 col-xs-12"></div>
+                <div class="product col-md-4" style="margin: auto; background-color: rgba(0, 0, 0, 0.7)">
+                    <div class="product-img" style="margin: auto">
+                        <h2 id="loginh2" style="padding-top: 15px"><b>Đăng nhập</b></h2>
+                        <form action="" method="post" id="login-form">
+                            <input id="loginusername" type="text" name="user" placeholder="USER NAME" required>
+                            <input id="loginpass" type="password" name="pass" placeholder="PASSWORD" required>
+                            <ul class="agileinfotickwthree">
+                            </ul>
+                            <div class="aitssendbuttonw3ls">
+                                <input type="submit" value="ĐĂNG NHẬP" id="loginsubmit">
+                                <div class="clear"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="aitssendbuttonw3ls" style="padding-top: 25px; padding-bottom: 25px;">
+                            <% if (errorMessage && errorMessage.length > 0) { %>
+                                <p><b>
+                                    <%= errorMessage %>
+                                </b></p>
+                            <% } %>
+                        <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Login with Google</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- //Body -->
+<script src="/javascripts/main.js"></script>
+</html>
